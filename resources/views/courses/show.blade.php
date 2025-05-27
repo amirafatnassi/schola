@@ -36,23 +36,28 @@
                     @if($mod->duration) <p class="mb-4">{{$mod->duration}} h</p>@endif
                     @endforeach
                 </div>
-                <div class="">
+                <div class="row text-center justify-content-center align-items-center">
                     @php
                     $user = Auth::user();
                     $isEnrolled = $user->courses->contains($course->id);
                     @endphp
 
-                    @if ($isEnrolled || session('enrolled_course') == $course->id || session('already_enrolled') == $course->id)
-                    <button class="btn btn-primary rounded-pill py-3 px-5" disabled>Enrolled</button>
-                    @else
-                    <form action="{{ route('courses.enroll', $course->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-primary rounded-pill py-3 px-5" >Enroll</button>
-                    </form>
-                    @endif
+                    <div class="col-auto mb-2">
+                        @if ($isEnrolled || session('enrolled_course') == $course->id || session('already_enrolled') == $course->id)
+                        <button class="btn btn-primary rounded-pill py-3 px-5" disabled>Enrolled</button>
+                        @else
+                        <form action="{{ route('courses.enroll', $course->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary rounded-pill py-3 px-5">Enroll</button>
+                        </form>
+                        @endif
+                    </div>
 
-                    <a class="btn btn-primary rounded-pill py-3 px-5" href="">Go Back To Home</a>
+                    <div class="col-auto mb-2">
+                        <a class="btn btn-primary rounded-pill py-3 px-5" href="{{ url('/') }}">Go Back To Home</a>
+                    </div>
                 </div>
+
 
             </div>
         </div>

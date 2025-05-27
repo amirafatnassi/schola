@@ -39,6 +39,10 @@
                     <p>Email: {{Auth::user()->email}}</p>
                     <p>Role: {{Auth::user()->role}}</p>
                     <p>ID: {{Auth::user()->id}}</p>
+                    <form action="{{ route('profile.edit', Auth::user()->id) }}" method="PUT">
+                        @csrf
+                        <button type="submit" class="btn btn-primary rounded-pill py-3 px-5">Edit profile</button>
+                    </form>
                 </div>
             </div>
         </div>

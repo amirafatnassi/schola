@@ -76,4 +76,19 @@ class User extends Authenticatable
             ->withPivot('enrolled_at', 'completed_at', 'modules_completed')
             ->withTimestamps();
     }
+
+    public function isInstructor()
+    {
+        return $this->role === 'instructor';
+    }
+
+    public function isStudent()
+    {
+        return $this->role === 'student';
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
 }

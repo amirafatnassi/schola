@@ -53,11 +53,21 @@
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="{{url('home')}}" class="nav-item nav-link active">Home</a>
                 <a href="{{url('about')}}" class="nav-item nav-link">A propos</a>
-                <a href="{{url('courses')}}" class="nav-item nav-link">Courses</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Courses</a>
+                    <div class="dropdown-menu fade-down m-0">
+                        <a href="{{url('courses')}}" class="dropdown-item">Courses</a>
+                        @if(Auth::check() && Auth::user()->isInstructor())
+                            <a href="{{url('courses/create')}}" class="dropdown-item">New course</a>
+                        @endif
+                        <a href="{{url('testimonial')}}" class="dropdown-item">Témoignages</a>
+                        <a href="{{url('404')}}" class="dropdown-item">404 Page</a>
+                    </div>
+                </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-down m-0">
