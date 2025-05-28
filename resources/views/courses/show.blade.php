@@ -19,9 +19,10 @@
                     <p class="mb-4">{{$course->description}}</p>
 
                     <div class="d-flex border-top">
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-info text-primary me-2"></i>{{$course->category}}</small>
                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>{{$course->level}}</small>
                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-language text-primary me-2"></i>{{$course->language}}</small>
-                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>{{$course->instructor->name}}</small>
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>{{$course->instructor->firstname}} {{$course->instructor->lastname}}</small>
                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>{{$course->duration}} h</small>
                         <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>{{$course->students->count()}} étudiants</small>
                     </div>

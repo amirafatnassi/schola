@@ -28,7 +28,7 @@ class ProfileController extends Controller
             'facebook' => 'nullable|url',
             'instagram' => 'nullable|url',
             'linkedin' => 'nullable|url',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:61440' // 60MB
         ]);
 
         $user->firstname = $request->firstname;
