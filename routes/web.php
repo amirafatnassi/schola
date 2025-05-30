@@ -30,13 +30,8 @@ Route::post('/courses/{id}/enroll', [CourseController::class, 'enroll'])->name('
 Route::resource('users', userController::class);
 Route::resource('instructors', InstructorController::class);
 Route::resource('students', StudentController::class);
-Route::get('theme', function () {
-    return view('theme');
-})->name('theme');
-Route::get('/set-theme/{theme}', function ($theme) {
-    session(['theme' => $theme]);
-    return redirect()->back();
-})->name('set-theme');
+Route::post('/testimony', [CourseController::class, 'storeTestimony'])->name('testimony.submit');
+
 
 Route::get('index', function () {
     return view('index');

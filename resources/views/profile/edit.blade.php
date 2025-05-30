@@ -1,7 +1,4 @@
 <x-layout>
-
-
-    <!-- About Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5">
@@ -78,38 +75,4 @@
             </div>
         </div>
     </div>
-    <!-- About End -->
-
-    <script>
-        document.getElementById('avatar').addEventListener('change', function() {
-            const file = this.files[0];
-            const maxSizeMB = 10;
-            const allowedTypes = ['image/jpeg', 'image/png'];
-            const preview = document.getElementById('avatarPreview');
-            const sizeNote = document.getElementById('fileSizeNote');
-
-            preview.style.display = 'none';
-            sizeNote.textContent = '';
-
-            if (file) {
-                if (!allowedTypes.includes(file.type)) {
-                    alert("Only JPG and PNG images are allowed.");
-                    this.value = '';
-                } else if (file.size > maxSizeMB * 1024 * 1024) {
-                    alert("Image must be less than " + maxSizeMB + "MB.");
-                    this.value = '';
-                } else {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        preview.src = e.target.result;
-                        preview.style.display = 'block';
-                        sizeNote.textContent = "File size: " + (file.size / 1024 / 1024).toFixed(2) + " MB";
-                    };
-                    reader.readAsDataURL(file);
-                }
-            }
-        });
-    </script>
-
-
 </x-layout>

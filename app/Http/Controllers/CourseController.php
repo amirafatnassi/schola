@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Auth;
 
 class CourseController extends Controller
 {
-    /**
-     * Display a listing of the courses.
-     */
+    // Display a listing of the courses.
+
     public function index()
     {
         // $courses = Course::latest()->paginate(10);
@@ -19,23 +19,44 @@ class CourseController extends Controller
         return view('courses.index', compact('courses'));
     }
 
-    /**
-     * Show the form for creating a new course.
-     */
+    // Show the form for creating a new course.
+
     public function create()
     {
         return view('courses.create');
     }
 
-    /**
-     * Store a newly created course in storage.
-     */
+    // Store a newly created course in storage.
+
     public function store(Request $request)
     {
         $course = Course::create($request->validated());
 
         return redirect()->route('courses.index')
             ->with('success', 'Cours ajouté avec succès.');
+    }
+
+    //store connected user testimony and rating
+    public function storeTestimony(Request $request)
+    {
+        $request->validate([
+            'testimony' => 'required|string|max:1000',
+            'rating' => 'nullable|integer|min:1|max:5',
+        ]);
+
+        Testimonial::create([
+            'user_id' => Auth::id(),
+            'course_id' => $request->courseId,
+            'content' => $request->testimony,
+            'rating' => $request->rating
+        ]);
+
+        $course = Course::findorFail($request->courseId);
+        $average = $course->testimonials()->avg('rating');
+        $course->rating = $average;
+        $course->save();
+
+        return back()->with('success', 'Thank you for your testimony!');
     }
 
     /**
