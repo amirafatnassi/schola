@@ -19,14 +19,14 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'Admin',
             'lastname' => 'User',
             'email' => 'admin@example.com',
-            'role'=>'admin'
+            'role' => 'admin'
         ]);
 
         User::factory()->count(5)->create(['role' => 'instructor']);
         User::factory()->count(20)->create(['role' => 'student']);
 
         $this->call([
-            CourseSeeder::class,
+            CategorySeeder::class,
             CourseSeeder::class,
             ModuleSeeder::class,
             CommentSeeder::class,

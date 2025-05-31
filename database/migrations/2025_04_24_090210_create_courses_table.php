@@ -24,7 +24,7 @@ return new class extends Migration
             $table->enum('language', ['fr', 'en', 'ar'])->default('fr');
             $table->boolean('certificate_available')->default(false);
             $table->boolean('credits')->default(false);
-            $table->string('category')->nullable();
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }

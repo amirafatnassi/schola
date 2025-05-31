@@ -21,13 +21,18 @@ class Course extends Model
         'certificate_available',
         'credits',
         'image',
-        'category',
+        'category_id',
     ];
 
     // Relationships
     public function instructor()
     {
         return $this->belongsTo(User::class, 'instructor_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function comments()
@@ -51,5 +56,4 @@ class Course extends Model
             ->withPivot('enrolled_at', 'completed_at', 'modules_completed') // Include pivot data
             ->withTimestamps();
     }
-
 }

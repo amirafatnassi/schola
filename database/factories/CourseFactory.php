@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -29,7 +30,7 @@ class CourseFactory extends Factory
             'certificate_available' => $this->faker->boolean,
             'credits' => $this->faker->boolean,
             'image' => 'img/course-' . rand(1, 3) . '.jpg',
-            'category' => $this->faker->randomElement(['Informatique', 'Business', 'Marketing', 'Design', 'Santé']),
+            'category_id' => Category::inRandomOrder()->first()?->id ?? Category::factory(),
         ];
     }
 }
