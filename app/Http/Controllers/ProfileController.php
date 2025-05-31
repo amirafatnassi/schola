@@ -25,6 +25,7 @@ class ProfileController extends Controller
         $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
+            'role' => 'required',
             'facebook' => 'nullable|url',
             'instagram' => 'nullable|url',
             'linkedin' => 'nullable|url',
@@ -32,7 +33,8 @@ class ProfileController extends Controller
         ]);
 
         $user->firstname = $request->firstname;
-        $user->lastname = $request->lastname;
+        $user->firstname = $request->firstname;
+        $user->role = $request->role;
         $user->facebook = $request->facebook;
         $user->instagram = $request->instagram;
         $user->linkedin = $request->linkedin;

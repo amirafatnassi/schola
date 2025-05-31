@@ -44,6 +44,14 @@
                                 <input type="text" name="lastname" class="form-control" value="{{ old('lastname', Auth::user()->lastname) }}" required>
                             </div>
 
+                            <div class="mb-3 col-6">
+                                <label for="role">Role</label>
+                                <select  class="form-control" name="role" id="role">
+                                    <option value="student">Student</option>
+                                    <option value="instructor">Instructor</option>
+                                </select>
+                            </div>
+
                             <div class="mb-3">
                                 <label>Facebook</label>
                                 <input type="url" name="facebook" class="form-control" value="{{ old('facebook', Auth::user()->facebook) }}">
