@@ -19,7 +19,7 @@
                     <p class="mb-4">{{$course->description}}</p>
 
                     <div class="d-flex border-top">
-                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-info text-primary me-2"></i>{{$course->category}}</small>
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-info text-primary me-2"></i>{{$course->category->name}}</small>
                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>{{$course->level}}</small>
                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-language text-primary me-2"></i>{{$course->language}}</small>
                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>{{$course->instructor->firstname}} {{$course->instructor->lastname}}</small>
@@ -70,10 +70,10 @@
                             <p class="text-2xl italic font-medium text-gray-900 dark:text-white">"{{$testimony->content}}"</p>
                         </blockquote>
                         <figcaption class="flex items-center justify-center mt-6 space-x-3 rtl:space-x-reverse">
-                            <img class="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture">
+                            <img class="w-6 h-6 rounded-full" src="{{ Auth::user()->avatar ? asset('img/profile-pictures/' . Auth::user()->avatar) : asset('img/profile-pictures/user.jpg') }}" alt="profile picture">
                             <div class="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-500 dark:divide-gray-700">
                                 <cite class="pe-3 font-medium text-gray-900 dark:text-white">{{$testimony->user->firstname}} {{$testimony->user->lastame}}</cite>
-                                <cite class="ps-3 text-sm text-gray-500 dark:text-gray-400">CEO at Google</cite>
+                                <cite class="ps-3 text-sm text-gray-500 dark:text-gray-400">{{$testimony->user->role}}</cite>
                             </div>
                         </figcaption>
                     </figure>
